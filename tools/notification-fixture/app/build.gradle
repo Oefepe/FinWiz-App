@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    namespace 'com.finwiz.notiffixture'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // One flavor per bank package name currently recognized by FinWiz's
+    // BANK_PACKAGES set (apps/mobile/lib/ingestionPipeline.ts). Add a flavor
+    // here whenever M14-T3 confirms a real package name for a new bank
+    // (Caixa, Banco do Brasil, etc.) — don't guess a package name in the
+    // meantime.
+    flavorDimensions = ["bank"]
+    productFlavors {
+        nubank {
+            dimension "bank"
+            applicationId "com.nu.production"
+            resValue "string", "fixture_bank_label", "Nubank (fixture)"
+        }
+        inter {
+            dimension "bank"
+            applicationId "br.com.intermedium"
+            resValue "string", "fixture_bank_label", "Inter (fixture)"
+        }
+        itau {
+            dimension "bank"
+            applicationId "com.itau"
+            resValue "string", "fixture_bank_label", "Itaú (fixture)"
+        }
+        bradesco {
+            dimension "bank"
+            applicationId "com.bradesco"
+            resValue "string", "fixture_bank_label", "Bradesco (fixture)"
+        }
+        c6 {
+            dimension "bank"
+            applicationId "com.c6bank.app"
+            resValue "string", "fixture_bank_label", "C6 Bank (fixture)"
+        }
+        santander {
+            dimension "bank"
+            applicationId "br.com.santander.benvisavale"
+            resValue "string", "fixture_bank_label", "Santander (fixture)"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:1.13.1"
+    implementation "androidx.appcompat:appcompat:1.7.0"
+}

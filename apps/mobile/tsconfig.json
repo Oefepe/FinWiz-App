@@ -1,0 +1,36 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "allowJs": true,
+    "paths": {
+      "@finwiz/notification-parser": [
+        "../../packages/notification-parser/src/index.ts"
+      ],
+      "@finwiz/allowance-engine": [
+        "../../packages/allowance-engine/src/index.ts"
+      ],
+      "@finwiz/self-transfer-detector": [
+        "../../packages/self-transfer-detector/src/index.ts"
+      ],
+      "@finwiz/obsidian-client": [
+        "../../packages/obsidian-client/src/index.ts"
+      ],
+      "@finwiz/ai-agent": [
+        "../../packages/ai-agent/src/index.ts"
+      ],
+      "@finwiz/notification-listener-android": [
+        "../../packages/notification-listener-android/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
+  ]
+}

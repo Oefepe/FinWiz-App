@@ -1,0 +1,32 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.finwiz.notificationlistener" >
+4
+5    <uses-sdk android:minSdkVersion="23" />
+6
+7    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+7-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:4:3-79
+7-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:4:20-76
+8
+9    <application>
+9-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:6:3-16:17
+10        <service
+10-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:7:5-15:15
+11            android:name="com.finwiz.notificationlistener.FinWizNotificationListenerService"
+11-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:8:7-56
+12            android:exported="true"
+12-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:11:7-30
+13            android:label="FinWiz Notification Listener"
+13-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:9:7-51
+14            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+14-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:10:7-81
+15            <intent-filter>
+15-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:12:7-14:23
+16                <action android:name="android.service.notification.NotificationListenerService" />
+16-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:13:9-91
+16-->C:\Users\felip\Documents\FinWiz\FinWiz App\packages\notification-listener-android\android\src\main\AndroidManifest.xml:13:17-88
+17            </intent-filter>
+18        </service>
+19    </application>
+20
+21</manifest>

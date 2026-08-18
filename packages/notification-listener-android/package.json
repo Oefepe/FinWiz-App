@@ -1,0 +1,18 @@
+{
+  "name": "@finwiz/notification-listener-android",
+  "version": "0.1.0",
+  "private": true,
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo 'No JS tests for Android native package'",
+    "lint": "echo 'No JS lint for Android native package'",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "expo-modules-core": "*",
+    "react-native": "*"
+  }
+}

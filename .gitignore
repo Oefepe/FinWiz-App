@@ -1,0 +1,25 @@
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Model binaries
+*.gguf
+*.bin
+
+# Expo
+apps/mobile/.expo/
+apps/mobile/android/
+apps/mobile/ios/
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+
+# Secrets / env
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
