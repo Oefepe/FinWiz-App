@@ -15,7 +15,6 @@ module.exports = {
       '<rootDir>/../../packages/self-transfer-detector/src/index.ts',
     '^@finwiz/notification-parser$':
       '<rootDir>/../../packages/notification-parser/src/index.ts',
-    '^@finwiz/ai-agent$': '<rootDir>/../../packages/ai-agent/src/index.ts',
     '^@finwiz/notification-listener-android$':
       '<rootDir>/../../packages/notification-listener-android/src/index.ts',
     // Stub native modules that aren't available in the test environment.

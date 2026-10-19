@@ -18,9 +18,6 @@
       "@finwiz/obsidian-client": [
         "../../packages/obsidian-client/src/index.ts"
       ],
-      "@finwiz/ai-agent": [
-        "../../packages/ai-agent/src/index.ts"
-      ],
       "@finwiz/notification-listener-android": [
         "../../packages/notification-listener-android/src/index.ts"
       ]

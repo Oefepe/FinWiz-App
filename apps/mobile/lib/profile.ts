@@ -1,4 +1,4 @@
-import type { AllowanceConfig } from '@finwiz/ai-agent';
+import type { AllowanceConfig } from './allowanceConfig';
 import type { AllowancePeriod } from '@finwiz/allowance-engine';
 
 // Figma's Profile frame exposes exactly five fields: Full Name, Salary,

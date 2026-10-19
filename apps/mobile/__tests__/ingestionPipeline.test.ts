@@ -1,4 +1,4 @@
-import { ingestNotification, isKnownPackage, transactionToRow, BANK_PACKAGES, WALLET_PACKAGES } from '../lib/ingestionPipeline';
+import { ingestNotification, isKnownPackage, getWatchedPackages, transactionToRow, BANK_PACKAGES, WALLET_PACKAGES } from '../lib/ingestionPipeline';
 import { createDedupCache } from '@finwiz/notification-parser';
 import type { RawNotificationEvent } from '@finwiz/notification-listener-android';
 
@@ -76,6 +76,35 @@ describe('isKnownPackage', () => {
 
   it('contains all 4 wallet packages', () => {
     expect(WALLET_PACKAGES.size).toBe(4);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// getWatchedPackages
+// ---------------------------------------------------------------------------
+
+describe('getWatchedPackages', () => {
+  it('watches every bank when none are selected', () => {
+    expect(getWatchedPackages('bank_only', [])).toEqual(Array.from(BANK_PACKAGES));
+  });
+
+  it('narrows banks to the selection', () => {
+    expect(getWatchedPackages('bank_only', ['com.nu.production'])).toEqual(['com.nu.production']);
+  });
+
+  it('keeps wallets in both mode even when banks are selected', () => {
+    const pkgs = getWatchedPackages('both', ['com.nu.production']);
+    expect(pkgs).toContain('com.nu.production');
+    expect(pkgs).not.toContain('com.itau');
+    for (const w of WALLET_PACKAGES) expect(pkgs).toContain(w);
+  });
+
+  it('watches only wallets in wallet_only mode', () => {
+    expect(getWatchedPackages('wallet_only', ['com.nu.production'])).toEqual(Array.from(WALLET_PACKAGES));
+  });
+
+  it('drops selected packages that are not known banks', () => {
+    expect(getWatchedPackages('bank_only', ['com.unknown.app', 'com.itau'])).toEqual(['com.itau']);
   });
 });
 

@@ -110,13 +110,6 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-          {/* M18-T5/T12 — chat.tsx has no UI entry point anywhere (removed
-              from BottomNavigation since M14, no Link/router.push found in
-              any reachable screen) and its stub LLM was explicitly out of
-              beta scope since M6. Unregistered here rather than deleted,
-              matching the model-download.tsx/ai-interview.tsx precedent —
-              file stays as dead-but-unmounted code, not reachable via
-              normal navigation. */}
           <Stack.Screen name="ingest" options={{ headerShown: false }} />
           <Stack.Screen name="transactions" options={{ title: 'Transactions', headerBackTitle: 'Back' }} />
           <Stack.Screen name="transaction-edit" options={{ headerShown: false }} />

@@ -24,22 +24,7 @@ interface ProfileSlice {
   setGoals: (goals: GoalsFrontmatter) => void;
 }
 
-export interface ChatMessage {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: number;
-}
-
-interface AgentSlice {
-  messages: ChatMessage[];
-  isThinking: boolean;
-  addMessage: (role: 'user' | 'assistant', content: string) => void;
-  setThinking: (thinking: boolean) => void;
-  clearMessages: () => void;
-}
-
-type AppStore = TransactionSlice & AllowanceSlice & ProfileSlice & AgentSlice;
+type AppStore = TransactionSlice & AllowanceSlice & ProfileSlice;
 
 // ---------------------------------------------------------------------------
 // Store
@@ -61,24 +46,6 @@ export const useStore = create<AppStore>()((set) => ({
   ownerName: '',
   setGoals: (goals) =>
     set({ goals, ownerName: goals.owner_name }),
-
-  // agentSlice
-  messages: [],
-  isThinking: false,
-  addMessage: (role, content) =>
-    set((state) => ({
-      messages: [
-        ...state.messages,
-        {
-          id: Math.random().toString(36).slice(2),
-          role,
-          content,
-          timestamp: Date.now(),
-        },
-      ],
-    })),
-  setThinking: (isThinking) => set({ isThinking }),
-  clearMessages: () => set({ messages: [] }),
 }));
 
 // ---------------------------------------------------------------------------
@@ -88,5 +55,3 @@ export const useStore = create<AppStore>()((set) => ({
 export const useTransactions = () => useStore((s) => s.transactions);
 export const useAllowanceState = () => useStore((s) => s.allowanceState);
 export const useGoals = () => useStore((s) => s.goals);
-export const useChatMessages = () => useStore((s) => s.messages);
-export const useIsThinking = () => useStore((s) => s.isThinking);

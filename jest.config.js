@@ -5,7 +5,6 @@ module.exports = {
     '<rootDir>/packages/allowance-engine',
     '<rootDir>/packages/self-transfer-detector',
     '<rootDir>/packages/obsidian-client',
-    '<rootDir>/packages/ai-agent',
     '<rootDir>/apps/mobile',
   ],
 };

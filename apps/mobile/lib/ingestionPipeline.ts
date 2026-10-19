@@ -61,6 +61,20 @@ export function isKnownPackage(appPackage: string, mode: NotificationMode): bool
   return BANK_PACKAGES.has(appPackage) || WALLET_PACKAGES.has(appPackage);
 }
 
+// The package allowlist handed to the native Android listener. Bank
+// packages are narrowed to the user's selection (all banks if none picked);
+// wallet packages are always included when the mode covers wallets — the
+// bank picker doesn't list wallets, so narrowing them would drop them all.
+export function getWatchedPackages(mode: NotificationMode, selectedBanks: string[]): string[] {
+  const banks = selectedBanks.length > 0
+    ? selectedBanks.filter((pkg) => BANK_PACKAGES.has(pkg))
+    : Array.from(BANK_PACKAGES);
+  const packages: string[] = [];
+  if (mode !== 'wallet_only') packages.push(...banks);
+  if (mode !== 'bank_only') packages.push(...WALLET_PACKAGES);
+  return packages;
+}
+
 export function transactionToRow(
   tx: Transaction,
 ): TransactionTableRow & { id: string } {

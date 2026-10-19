@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@expo-google-fonts/open-sans": "^0.4.2",
-    "@finwiz/ai-agent": "*",
     "@finwiz/allowance-engine": "*",
     "@finwiz/notification-listener-android": "*",
     "@finwiz/notification-parser": "*",

@@ -1,7 +1,7 @@
 import { open, type DB } from '@op-engineering/op-sqlite';
 import type { AllowancePeriod, AllowanceTx } from '@finwiz/allowance-engine';
 import type { TransactionTableRow } from '@finwiz/obsidian-client';
-import type { AllowanceConfig } from '@finwiz/ai-agent';
+import type { AllowanceConfig } from './allowanceConfig';
 import type { PendingPair, SelfTransferPair } from '@finwiz/self-transfer-detector';
 import type { TransactionRecord } from './transactionUtils';
 import { getOrCreateDbEncryptionKey } from './dbEncryption';

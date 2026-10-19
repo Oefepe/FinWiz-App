@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Platform, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Platform, Alert, AppState } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { useQueryClient } from '@tanstack/react-query';
 import { Header } from '../../components/Header';
@@ -8,6 +8,7 @@ import { Input, DropdownInput } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { getAllowanceConfig, saveAllowanceConfig, getSelectedBanks, saveSelectedBanks } from '../../lib/database';
 import { requestNotificationPermission } from '../../lib/notifications';
+import { isNotificationAccessGranted, requestNotificationAccess } from '../../lib/notificationAccess';
 import { getCaptureMode, saveCaptureMode, type CaptureMode } from '../../lib/captureMode';
 import { getLanguage, saveLanguage, type Language } from '../../lib/language';
 import { getAppLockTimeout, saveAppLockTimeout, type AppLockTimeout } from '../../lib/appLock';
@@ -59,6 +60,17 @@ export default function SettingsScreen() {
   const [vaultUrl, setVaultUrl] = useState('');
   const [appLockTimeout, setAppLockTimeout] = useState<AppLockTimeout>('30s');
   const [saving, setSaving] = useState(false);
+  const [listenerAccess, setListenerAccess] = useState(isNotificationAccessGranted);
+
+  // Android: the user grants listener access in system settings, so re-check
+  // whenever they come back to the app.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') setListenerAccess(isNotificationAccessGranted());
+    });
+    return () => { sub.remove(); };
+  }, []);
 
   useEffect(() => {
     void (async () => {
@@ -263,6 +275,24 @@ export default function SettingsScreen() {
 
         {/* Notifications permission */}
         <Section title="Permissions">
+          {Platform.OS === 'android' && (
+            <>
+              <View className="flex-row items-center justify-between py-1">
+                <Text className="text-sm font-medium text-gray-800">Bank notification access</Text>
+                <Text className={`text-xs font-medium ${listenerAccess ? 'text-green-600' : 'text-amber-600'}`}>
+                  {listenerAccess ? 'Granted' : 'Not granted'}
+                </Text>
+              </View>
+              <SectionLabel>
+                Lets FinWiz watch your bank and wallet notifications to record transactions automatically
+              </SectionLabel>
+              {!listenerAccess && (
+                <TouchableOpacity onPress={requestNotificationAccess} className="py-2">
+                  <Text className="text-sm font-medium text-primary">Grant notification access</Text>
+                </TouchableOpacity>
+              )}
+            </>
+          )}
           <TouchableOpacity onPress={() => { void handleRequestNotifPermission(); }} className="py-2">
             <Text className="text-sm font-medium text-primary">Request notification permission</Text>
           </TouchableOpacity>

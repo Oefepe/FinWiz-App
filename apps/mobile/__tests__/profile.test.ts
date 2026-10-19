@@ -5,7 +5,7 @@ import {
   financialFieldsChanged,
   type ProfileForm,
 } from '../lib/profile';
-import type { AllowanceConfig } from '@finwiz/ai-agent';
+import type { AllowanceConfig } from '../lib/allowanceConfig';
 
 const BASE_CONFIG: AllowanceConfig = {
   monthlyIncomeEstimate: 5000,

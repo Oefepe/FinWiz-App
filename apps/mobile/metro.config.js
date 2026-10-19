@@ -24,7 +24,6 @@ const workspacePackages = {
   '@finwiz/notification-parser': path.resolve(monorepoRoot, 'packages/notification-parser/src/index.ts'),
   '@finwiz/obsidian-client': path.resolve(monorepoRoot, 'packages/obsidian-client/src/index.ts'),
   '@finwiz/self-transfer-detector': path.resolve(monorepoRoot, 'packages/self-transfer-detector/src/index.ts'),
-  '@finwiz/ai-agent': path.resolve(monorepoRoot, 'packages/ai-agent/src/index.ts'),
   '@finwiz/notification-listener-android': path.resolve(monorepoRoot, 'packages/notification-listener-android/src/index.ts'),
 };
 
